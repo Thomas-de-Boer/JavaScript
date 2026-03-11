@@ -30,8 +30,7 @@ document.querySelector('#pokemon_form').addEventListener('submit', async functio
             }
         });
 
-        const result = await response.text();
-        let json_result = JSON.parse(result);
+        const json_result = await response.json();
 
         document.querySelector("#result_name").innerText = json_result[0]['name'];
         document.querySelector("#result_id").innerText = json_result[0]['id'];
@@ -56,6 +55,7 @@ document.querySelector('#cat_form').addEventListener('submit', function () {
     event.preventDefault();
 
     const search = document.querySelector("#cat_search").value.toLowerCase()
+
 
     fetch("config.php", {
         method: "POST",
@@ -82,11 +82,12 @@ window.addEventListener("load", () => {
         sleep(1000).then(r => document.querySelector('#box1').style.backgroundColor = "orange");
     });
 
-    document.querySelector('#box2').addEventListener('click', () => {
+    document.querySelector('#box2').addEventListener('click', async() => {
         document.querySelector('#box2').style.backgroundColor = "turquoise";
         document.querySelector('#box2').innerText = ""
-        fetch(link)
-        document.querySelector('#box3').innerHTML = "<img src='" + link + "' alt='' width='100%' height='100%'/>";
+        const random_cat = await fetch(link)
+        const data = await random_cat
+        document.querySelector('#box3').innerHTML = "<img src='" + data.url + "' alt='' width='100%' height='100%'/>";
     });
 
     document.querySelector('#box3').addEventListener('click', () => {
