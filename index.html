@@ -6,10 +6,45 @@
     <link rel="stylesheet" href="website.css">
 </head>
 <body>
-    <div id="box1" class="box"></div>
-    <div id="box2" class="box"></div>
-    <div id="box3" class="box"></div>
-    <div id="box4" class="box"></div>
-    <script src="website.js"></script>
+
+<div id="container_pokemon">
+    <div class="result" id="result_pokemon">
+        <div id="result_top">
+            <div id="result_name">Squirtle</div>
+            <div id="result_id">7</div>
+        </div>
+        <div id="stats"></div>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" alt="Image Not Available" id="result_image">
+        <div id="result_species">Tiny Turtle Pokémon</div>
+    </div>
+    <div id="search_pokemon">
+        <form id="pokemon_form" method="post" autocomplete="off">
+            <label>ZoekZoek pokemon<br>
+            <input type="text" name="pokemon" id="pokemon_search" class="search_bar"> </label> <br>
+            <div id="suggestions_pokemon"></div>
+            <input type="submit" value="Submit" class="submit">
+        </form>
+    </div>
+</div>
+
+<div id="container_cat">
+    <div id="search_cat_tag">
+        <form id="cat_form" method="post" autocomplete="off">
+            <label>ZoekZoek kat<br>
+            <input type="text" name="cat" id="cat_search" class="search_bar"> </label> <br>
+            <div id="suggestions_cat"></div>
+            <input type="submit" value="Submit" class="submit">
+        </form>
+    </div>
+    <div class="result" id="result_cat">
+    </div>
+</div>
+
+<div id="box1" class="box"></div>
+<div id="box2" class="box"></div>
+<div id="box3" class="box"></div>
+<div id="box4" class="box"></div>
+<script src="js/website.js"></script>
+<script src="js/autocomplete.js"></script>
 </body>
 </html>
