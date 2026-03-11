@@ -11,6 +11,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+ini_set('display_errors', '0');
+
+header('Content-Type: application/json');
+
 if (isset($_POST['pokemon'])) {
     $value = (string)$_POST['pokemon'];
     $search_type = "pokemon.name";
@@ -18,15 +22,6 @@ if (isset($_POST['pokemon'])) {
     if (filter_var($value, FILTER_VALIDATE_INT) !== false) {
         $search_type = "pokemon.id";
     }
-
-//    try {
-//        $int_value = (int) $value;
-//        $search_type = "pokemon.id";
-//    } catch (Exception $ex) {$search_type = "pokemon.name";}
-
-//    if (is_int($value)) {
-//        $search_type = "pokemon.id";
-//    }
 
     $sql = 'select pokemon.id, pokemon.name, species from pokemon
             join pokemon_types on pokemon.id = pokemon_types.pokemon_id
@@ -43,5 +38,8 @@ if (isset($_POST['pokemon'])) {
 }
 
 if (isset($_POST['cat'])) {
-    echo "<img src='https://cataas.com/cat/" . $_POST["cat"] . "' alt='Image Not Available' width='100%' height='100%'/>";
+    $url =  "https://cataas.com/cat" . "/" . $_POST["cat"] . "?json=true";
+    $response = file_get_contents($url);
+    $data = json_decode($response, true);
+    echo "<img src='" . $data['url'] . "' alt='Image Not Available' width='100%' height='100%'/>";
 }
